@@ -1,0 +1,12 @@
+# Node
+node_modules/
+.env
+
+# Docker
+mongo-data/
+.DS_Store
+
+# Logs
+*.log
+
+.vscode/

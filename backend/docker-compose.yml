@@ -1,0 +1,32 @@
+version: "3.9" # Version de syntaxe Docker Compose
+
+services: # Liste des services à lancer
+
+  mongo: # Service MongoDB
+    image: mongo # Utilise l’image officielle MongoDB depuis Docker Hub
+    container_name: mongo # Nom personnalisé du conteneur
+    ports:
+      - "27017:27017" # Expose MongoDB sur localhost:27017
+    volumes:
+      - mongo-data:/data/db # Stockage persistant dans un volume Docker
+    environment:
+      MONGO_INITDB_DATABASE: ludotheque # Crée une base "ludotheque" au démarrage
+
+  backend: # Service pour ton API Express
+    build: . # Utilise le Dockerfile dans le dossier courant
+    container_name: ludotheque-backend # Nom du conteneur
+    ports:
+      - "3000:3000" # Expose l'API sur localhost:3000
+    volumes:
+      - .:/app # Synchronise les fichiers de ton projet dans le conteneur (live reload)
+    working_dir: /app # Dossier de travail dans le conteneur
+    command: pnpm run dev # Commande exécutée au démarrage du conteneur
+    depends_on:
+      - mongo # Attend que MongoDB soit lancé avant de démarrer
+    environment: # Variables d’environnement passées à ton app
+      PORT: 3000
+      MONGO_URI: mongodb://mongo:27017/ludotheque
+      JWT_SECRET: un_secret_bien_garde
+
+volumes:
+  mongo-data: # Déclaration du volume pour Mongo (stockage persistant)
