@@ -47,4 +47,10 @@ const login = async (req, res) => {
   }
 };
 
-export default { signup, login };
+const logout = (req, res) => {
+  // Pour la déconnexion, on peut simplement supprimer le token côté client.
+  // Le serveur n'a pas besoin de faire quoi que ce soit de spécial.
+  res.json({ message: "Déconnexion réussie" });
+}
+
+export default { signup, login, logout };

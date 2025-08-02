@@ -11,7 +11,7 @@ gameRouter.post("/", authMiddleware, gameController.createGame);
 gameRouter.get("/", authMiddleware, gameController.getUserGames);
 
 // Mettre à jour un jeu
-gameRouter.put("/:id", authMiddleware, gameController.updateGame);
+gameRouter.patch("/:id", authMiddleware, gameController.updateGame);
 
 // Supprimer un jeu
 gameRouter.delete("/:id", authMiddleware, gameController.deleteGame);

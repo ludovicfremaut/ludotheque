@@ -2,37 +2,45 @@
 
 ## Objectif
 
-Ce backend permet aux utilisateurs de créer un compte, se connecter, et gérer leur propre ludothèque de jeux de société via une API REST sécurisée.
+Ce backend Express permet aux utilisateurs de :
+- créer un compte,
+- se connecter,
+- gérer leur **propre ludothèque de jeux de société** (ajout, suppression, consultation),
+le tout via une API REST sécurisée.
 
 ---
 
 ## Stack utilisée
 
-- Node.js avec Express
-- MongoDB (via Mongoose)
-- Modules ES6 (`type: module`)
-- Argon2 pour le hachage des mots de passe
-- JSON Web Token (JWT) pour l’authentification
-- Architecture modulaire claire (`models`, `controllers`, `routes`, `middlewares`)
+- **Node.js** avec **Express**
+- **MongoDB** via **Mongoose**
+- Syntaxe **ES Modules** (`type: module`)
+- **argon2** pour le hachage des mots de passe
+- **JWT** (JSON Web Token) pour l’authentification sécurisée
+- Architecture modulaire claire : `models/`, `controllers/`, `routes/`, `middlewares/`
 
 ---
 
-## Fonctionnalités implémentées
+## Fonctionnalités actuelles
 
 ### Authentification
-- `POST /api/auth/signup` : inscription avec hachage sécurisé du mot de passe
-- `POST /api/auth/login` : connexion avec génération de token JWT
+| Méthode | Route              | Description                           |
+| ------: | ------------------ | ------------------------------------- |
+|    POST | `/api/auth/signup` | Crée un compte (hash du mot de passe) |
+|    POST | `/api/auth/login`  | Connexion + génération de token JWT   |
 
 ### Middleware
-- Vérification du token JWT via `authMiddleware`
-- Injection de `userId` dans `req` pour les routes protégées
+- `authMiddleware.js` : vérifie la validité du token JWT
+- Injecte automatiquement `userId` dans `req.userId` pour les routes privées
 
 ### Gestion des jeux
-- `POST /api/games` : ajout d’un jeu dans la ludothèque de l'utilisateur connecté
-- `GET /api/games` : récupération de la ludothèque personnelle
-- `DELETE /api/games/:id` : suppression d’un jeu
+| Méthode | Route            | Description                             |
+| ------: | ---------------- | --------------------------------------- |
+|    POST | `/api/games`     | Ajoute un jeu à la ludothèque de l'user |
+|     GET | `/api/games`     | Récupère la liste des jeux de l'user    |
+|  DELETE | `/api/games/:id` | Supprime un jeu de la ludothèque        |
 
 ---
 
-## Structure actuelle du projet
+## 🗂 Structure du projet
 
