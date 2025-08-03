@@ -12,6 +12,8 @@ const signup = async (req, res) => {
       return res.status(409).json({ error: "Email déjà utilisé" });
 
     const passwordHash = await argon2.hash(password);
+    // console.log(passwordHash);
+    
 
     const user = await User.create({ email, username, passwordHash });
 

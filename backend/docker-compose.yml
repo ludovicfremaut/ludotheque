@@ -14,7 +14,7 @@ services: # Liste des services à lancer
 
   backend: # Service pour ton API Express
     build: . # Utilise le Dockerfile dans le dossier courant
-    container_name: ludotheque-backend # Nom du conteneur
+    container_name: backend # Nom du conteneur
     ports:
       - "3000:3000" # Expose l'API sur localhost:3000
     volumes:

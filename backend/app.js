@@ -27,4 +27,10 @@ app.get("/", (req, res) => {
   res.send("Serveur backend OK !");
 });
 
+// Middleware de gestion d’erreurs global
+app.use((err, req, res, next) => {
+  console.error("Erreur non attrapée :", err); // ← log utile
+  res.status(500).json({ error: "Erreur interne du serveur" });
+});
+
 export default app;
