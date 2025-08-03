@@ -46,4 +46,16 @@ const deleteGame = async (req, res) => {
   }
 };
 
-export default { createGame, getUserGames, deleteGame, updateGame };
+const getGameById = async (req, res) => {
+  try {
+    const game = await Game.findOne({ _id: req.params.id, owner: req.userId });
+    if (!game) {
+      return res.status(404).json({ error: "Jeu non trouvé" });
+    }
+    res.json(game);
+  } catch (err) {
+    res.status(500).json({ error: "Erreur récupération jeu" });
+  }
+};
+
+export default { createGame, getUserGames, deleteGame, updateGame, getGameById };
