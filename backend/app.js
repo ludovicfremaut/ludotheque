@@ -1,11 +1,15 @@
 import express from "express";
 import dotenv from "dotenv/config";
 import mongoose from "mongoose";
+import cors from "cors";
 
 import gameRouter from "./routes/gameRouter.js";
 import authRouter from "./routes/authRouter.js";
 
 const app = express();
+
+// CORS pour le développement
+app.use(cors());
 
 // Middleware pour lire le JSON dans les requêtes
 app.use(express.json());

@@ -10,8 +10,10 @@ export const gameSchema = z.object({
   maxPlayers: z.number().int().min(1, "Minimum 1 joueur"),
   minAge: z.number().int().min(0, "Âge minimum invalide"),
   complexity: z.number().int().min(1).max(5, "Complexité entre 1 et 5"),
+  duration: z.number().int().min(1, "Durée requise en minutes"),
+  category: z.enum(['Stratégie', 'Famille', 'Party Game', 'Coopératif', 'Deck Building', 'Jeu de rôle', 'Abstrait', 'Ambiance', 'Autre']),
   description: z.string().min(1, "Description requise"),
-  imageUrl: z.string().url("URL de l’image invalide"),
+  imageUrl: z.string().url("URL de l'image invalide"),
   owner: z
     .string()
     .regex(objectIdRegex, "ID du propriétaire invalide")
@@ -26,8 +28,10 @@ export const gameUpdateSchema = z.object({
   maxPlayers: z.number().int().min(1, "Minimum 1 joueur").optional(),
   minAge: z.number().int().min(0, "Âge minimum invalide").optional(),
   complexity: z.number().int().min(1).max(5, "Complexité entre 1 et 5").optional(),
+  duration: z.number().int().min(1, "Durée requise en minutes").optional(),
+  category: z.enum(['Stratégie', 'Famille', 'Party Game', 'Coopératif', 'Deck Building', 'Jeu de rôle', 'Abstrait', 'Ambiance', 'Autre']).optional(),
   description: z.string().min(1, "Description requise").optional(),
-  imageUrl: z.string().url("URL de l’image invalide").optional(),
+  imageUrl: z.string().url("URL de l'image invalide").optional(),
   owner: z.string().regex(objectIdRegex, "ID du propriétaire invalide").optional(),
   createdAt: z.date().optional(),
 });

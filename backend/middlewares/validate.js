@@ -7,16 +7,19 @@ export const validate = (schema) => (req, res, next) => {
     req.body = schema.parse(req.body); // on peut modifier req.body avec les données validées
     next();
   } catch (err) {
+    console.error("Erreur de validation :", err);
     if (err instanceof z.ZodError) {
       return res.status(400).json({
         error: "Erreur de validation",
-        details: err.errors.map((e) => ({
-          path: e.path.join("."),
-          message: e.message,
-        })),
+        details: Array.isArray(err.errors)
+          ? err.errors.map((e) => ({
+              path: e.path.join("."),
+              message: e.message,
+            }))
+          : [{ path: "", message: "Erreur inconnue" }],
       });
     }
-    next(err); // erreur autre que Zod
+    next(err); // <= à ne pas oublier
   }
 };
 

@@ -2,7 +2,8 @@ import { z } from "zod";
 
 // Schéma de validation pour l'inscription
 export const signupSchema = z.object({
-  email: z.email("Email invalide"),
+  email: z.string().email("Email invalide"),
+  username: z.string().min(2, "Nom d'utilisateur trop court"),
   password: z
     .string()
     .min(8, "Mot de passe trop court (8 caractères minimum)")
@@ -12,6 +13,6 @@ export const signupSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  email: z.email("Email invalide"),
+  email: z.string().email("Email invalide"),
   password: z.string().min(1, "Mot de passe requis"),
 });

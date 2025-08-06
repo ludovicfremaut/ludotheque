@@ -20,6 +20,17 @@ const gameSchema = new mongoose.Schema({
   complexity: {
     type: Number,
     required: true,
+    min: 1,
+    max: 5,
+  },
+  duration: {
+    type: Number, // durée en minutes
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+    enum: ['Stratégie', 'Famille', 'Party Game', 'Coopératif', 'Deck Building', 'Jeu de rôle', 'Abstrait', 'Ambiance', 'Autre']
   },
   description: {
     type: String,
