@@ -1,0 +1,126 @@
+/* Reset minimal */
+html, body, #app {
+  min-height: 100vh;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e0ecff 0%, #e0fff7 100%);
+  color: #232946;
+  box-sizing: border-box;
+}
+
+/* Utile pour que tout prenne bien la hauteur écran */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Un container central classique */
+#app, .container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Formulaires stylés */
+input[type="text"], input[type="email"], input[type="password"], select {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  background: #f7fafc;
+  border: 1px solid #e3e8ee;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus {
+  border: 1.5px solid #7dd3fc;
+  outline: none;
+  box-shadow: 0 0 0 2px #bae6fd80;
+}
+
+button {
+  padding: 0.75rem 2rem;
+  border-radius: 0.75rem;
+  border: none;
+  background: linear-gradient(90deg, #38bdf8 0%, #14b8a6 100%);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #00bcd417;
+  transition: background 0.2s, transform 0.1s;
+}
+
+button:hover, button:focus {
+  background: linear-gradient(90deg, #0ea5e9 0%, #0d9488 100%);
+  transform: translateY(-1px) scale(1.02);
+}
+
+a, .router-link {
+  color: #14b8a6;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover, .router-link:hover {
+  color: #0ea5e9;
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.bg-white, .bg-white\/90, .bg-white\/95 {
+  background: rgba(255, 255, 255, 0.95) !important;
+  /* fallback si Uno/Tailwind non chargé */
+}
+
+.rounded-3xl {
+  border-radius: 2rem !important;
+}
+.rounded-xl {
+  border-radius: 1rem !important;
+}
+.rounded-lg {
+  border-radius: 0.75rem !important;
+}
+
+.shadow-xl, .shadow-2xl {
+  box-shadow: 0 8px 36px -8px #0ea5e980, 0 1.5px 6px 0 #14b8a61a !important;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #f7fafc inset !important;
+  -webkit-text-fill-color: #232946 !important;
+}
+
+/* Responsive ajustements pour mobile */
+@media (max-width: 640px) {
+  .max-w-md, .max-w-sm {
+    width: 95vw !important;
+    min-width: unset !important;
+  }
+  .p-10, .p-8 {
+    padding: 1.5rem !important;
+  }
+}
+
+/* Footer stylé */
+footer {
+  margin-top: 2rem;
+  font-size: 0.9em;
+  color: #a1a1aa;
+  text-align: center;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
